@@ -1,0 +1,24 @@
+<h2 mat-dialog-title>Create Todo</h2>
+<mat-divider></mat-divider>
+<mat-dialog-content class="mat-typography">
+    {{data|json}}
+    <form #todoForm>
+        {{todoForm|json}}
+    <input matInput [matDatepicker]="picker" name="start"  >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    </form>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="primary">Save</button>
+    <button mat-raised-button [mat-dialog-close]="true" cdkFocusInitial color="warn">Close</button>
+</mat-dialog-actions>
+
+
+<!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->

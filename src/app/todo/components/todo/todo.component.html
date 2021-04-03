@@ -1,0 +1,17 @@
+<div @fade>
+    <mat-card id="todo" @fadeInOut [ngClass]="{
+    'done': todo.status === 'done',
+    'backlog': todo.status === 'backlog',
+    'wip':todo.status === 'wip'
+}" (swipeleft)="swipeLeft(todo,$event.type)" (swiperight)="swipeRight(todo,$event)
+" (dblclick)="edit()">
+
+
+        <mat-card-header>
+            <mat-card-title>{{todo.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+        </mat-card-content>
+    </mat-card>
+
+</div>

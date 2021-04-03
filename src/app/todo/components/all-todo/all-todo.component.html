@@ -1,0 +1,34 @@
+<div style="padding: 1em;">
+  <button mat-raised-button color='primary' (click)="handleCreate()"> Create </button>
+</div>
+<mat-divider></mat-divider>
+<div class="mat-typography" style="padding-left:1em;">
+  <h2>Swipe left and right to change state</h2>
+</div>
+<div fxLayout='row-reverse'>
+  <div style="margin-right: 1em;">
+    <button mat-mini-fab color="primary" (click)="saveAll()">
+      <mat-icon>save</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div fxLayout.md="column" fxLayout.lg="row" fxLayout.sm="column">
+  <div fxFlex.md="33.333%" fxFlex.lg="33.333%" fxFlex.sm="100%">
+    <div *ngFor="let todo of backlogs$|async" @fadeInOut>
+      <app-todo [todo]="todo"></app-todo>
+    </div>
+
+  </div>
+  <div fxFlex.md="33.333%" fxFlex.lg="33.333%" fxFlex.sm="100%">
+    <div *ngFor="let todo of wips$|async" @fadeInOut>
+      <app-todo [todo]="todo"></app-todo>
+    </div>
+
+  </div>
+  <div fxFlex.md="33.333%" fxFlex.lg="33.333%" fxFlex.sm="100%">
+    <div *ngFor="let todo of dones$|async" @fadeInOut>
+      <app-todo [todo]="todo"></app-todo>
+    </div>
+  </div>
+</div>

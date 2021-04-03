@@ -1,0 +1,19 @@
+.done {
+  background-color: rgb(150, 243, 11);
+  color: rgb(14, 82, 14);
+}
+
+.backlog {
+  background-color: rgb(165, 164, 164);
+  color: #000000;
+}
+
+.wip {
+  background-color: rgb(10, 118, 226);
+  color: #ffff;
+}
+
+mat-card {
+  margin: 1em;
+  box-shadow: 0px 2px 4px rgb(100, 100, 100);
+}

@@ -4,8 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Code Setup 
 
 Run `npm install` for a installing the depencies from `package.json`.<br>
-Then run `npm ci` command to install dependencies from `package.lock.json` .<br>
-Then the app will automatically get the setup done.
+Then run `npm ci` command to install dependencies from `package.lock.json` . This command automatically sets up the application<br>
+
 
 
 ## Development server

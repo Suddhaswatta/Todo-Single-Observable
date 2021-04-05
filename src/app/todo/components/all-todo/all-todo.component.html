@@ -2,7 +2,7 @@
 <div class="mat-typography" style="margin:2em;">
   <h3>Swipe left and right to change state and double tap to edit the Todo.</h3>
 </div>
-<div fxLayout.md="column" fxLayout.lg="row" fxLayout.sm="column" fxLayoutGap="25px">
+<div fxLayout.md="column" fxLayout.lg="row" fxLayout.sm="column" >
   <div fxFlex.md="33.333%" fxFlex.lg="33.333%" fxFlex.sm="100%">
       <div *ngFor="let todo of backlogs$|async" @slideInOut>
         <app-todo [todo]="todo"></app-todo>

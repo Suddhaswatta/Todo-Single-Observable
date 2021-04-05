@@ -1,7 +1,7 @@
 import { Todo } from './../domains/todo';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, of, timer, Subject } from 'rxjs';
-import { tap, concatMap, flatMap, delayWhen, delay } from 'rxjs/operators';
+import { tap, concatMap, flatMap, delayWhen, delay, map, debounceTime, throttle, throttleTime } from 'rxjs/operators';
 import { v4 as uuid } from 'uuid';
 
 
@@ -22,7 +22,7 @@ export class TodoService {
       new Todo('6', 'Dinner', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "done"),
       new Todo('7', 'Sleep', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "backlog"),
       new Todo('8', 'Wake up', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "backlog"),
-      new Todo('9', 'Run ', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "wip"),
+      new Todo('9', 'Run', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "wip"),
       new Todo('10', 'Work', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "wip"),
       new Todo('12', 'Go to Gym', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "backlog"),
       new Todo('11', 'Go', new Date('2012-04-23T18:25:43.511Z'), new Date('2012-04-23T18:25:43.511Z'), "backlog"),
@@ -64,7 +64,7 @@ export class TodoService {
     return this.fetchData().pipe(
 
       flatMap(x => x),
-      concatMap(x=>of(x).pipe(delay(500))),
+      concatMap(x => of(x).pipe(delay(500))),
       // concatMap((x, i) => of(x).pipe(
       //   delayWhen((x) => {
       //     return i % 3 === 0 ? timer(500) : timer(0)
@@ -79,19 +79,26 @@ export class TodoService {
 
     )
   }
-  setTodos$() {
+  private setTodos$() {
     this.todos$.next(this.todos);
   }
 
-  public getTodos$() {
-    return this.todos$.asObservable();
+  public getTodos$(value = '') {
+
+
+    console.log(`Filter Search : ${value}`);
+
+    if (value == '')
+      return this.todos$
+        .asObservable()
+        ;
+
   }
 
-  createTodo(todo: Todo) {
+  private createTodo(todo: Todo) {
 
     const id: string = uuid();
     todo.id = id;
-
     this.todos.push(todo);
 
   }
@@ -112,9 +119,18 @@ export class TodoService {
 
   }
 
-
-
-
+  search(value) {
+    value = value.toLowerCase().trim();
+    const datasouce = of(this.todos)
+      .pipe(
+        map(todos => todos.filter(todo => todo.title.toLowerCase().includes(value) || todo.status.toLowerCase().includes(value))),
+        tap(x => this.todos$.next(x)),
+        tap(x => console.log(`After Filtration : ${x}`))
+      )
+    const subscription = datasouce.subscribe()
+    subscription.unsubscribe()
+    
+  }
 
 }
 

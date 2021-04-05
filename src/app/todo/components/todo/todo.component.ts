@@ -3,7 +3,7 @@ import { BehaviorSubject, Subscription } from 'rxjs';
 import { TodoService } from './../../services/todo.service';
 import { Todo } from './../../domains/todo';
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { fade, fadeInOut } from 'src/app/animations';
+import { fade } from 'src/app/animations';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -13,9 +13,6 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./todo.component.css'],
   animations: [
     fade,
-    fadeInOut
-
-
   ]
 
 })
@@ -23,7 +20,7 @@ export class TodoComponent implements OnInit {
   constructor(
     private todoservice: TodoService,
     private _snackBar: MatSnackBar,
-    private matdialog:MatDialog) { }
+    private matdialog: MatDialog) { }
 
   @Input()
   public todo: Todo;
@@ -42,11 +39,11 @@ export class TodoComponent implements OnInit {
       this.deleteTodo()
     } else if (todo.status == 'wip') {
       this.todo.status = "backlog";
-    this.todoservice.save(this.todo);
+      this.todoservice.save(this.todo);
 
     } else if (todo.status == 'done') {
       this.todo.status = "wip";
-    this.todoservice.save(this.todo);
+      this.todoservice.save(this.todo);
 
     }
 
@@ -68,14 +65,14 @@ export class TodoComponent implements OnInit {
   deleteTodo() {
 
     this.todoservice.delete(this.todo);
-    
-    
+
+
 
   }
-  edit(){
+  edit() {
     console.log("Double Click ");
-    this.matdialog.open(SaveTodoComponent,{data:this.todo})
-    
+    this.matdialog.open(SaveTodoComponent, { data: this.todo })
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { fadeInOut } from 'src/app/animations';
+import { slideInOut } from 'src/app/animations';
 import { SaveTodoComponent } from './../save-todo/save-todo.component';
 import { Todo } from './../../domains/todo';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
   selector: 'app-all-todo',
   templateUrl: './all-todo.component.html',
   styleUrls: ['./all-todo.component.css'],
-  animations: [fadeInOut]
+  animations: [slideInOut]
 })
 export class AllTodoComponent implements OnInit, OnDestroy {
 
@@ -46,18 +46,21 @@ export class AllTodoComponent implements OnInit, OnDestroy {
   }
   handleCreate() {
     console.log("Create ");
-    const ref = this.dialog.open(SaveTodoComponent);
-
-
+    const ref = this.dialog.open(SaveTodoComponent, { data: {} });
   }
+
   saveAll() {
     console.log('Save All');
+  }
 
+  search(event) {
+    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    console.log('Search Bar ' + filterValue);
+    this.todoservice.search(filterValue);
   }
 
   ngOnDestroy(): void {
     console.log("Destroyed");
-
     this.subscriptions.unsubscribe();
   }
 

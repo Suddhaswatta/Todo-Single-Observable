@@ -14,11 +14,17 @@ import { TodoComponent } from './todo/components/todo/todo.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { SubHeaderComponent } from './dashboard/sub-header/sub-header.component';
-
+import * as Hammer from 'hammerjs';
 @Injectable({ providedIn: 'root' })
 export class MyHammerConfig extends HammerGestureConfig {
   overrides = <any>{
-    'swipe': { velocity: 0.2, threshold: 20 } // override default settings
+    'swipe': { velocity: 0.2, threshold: 20 ,direction:Hammer.DIRECTION_ALL},
+    'pinch':{enable:true},
+    'rotate':{enable:true} ,
+  }
+  options = {
+    
+
   }
 }
 @NgModule({

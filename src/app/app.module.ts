@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TodoComponent } from './todo/components/todo/todo.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import { SubHeaderComponent } from './dashboard/sub-header/sub-header.component';
 
 @Injectable({ providedIn: 'root' })
 export class MyHammerConfig extends HammerGestureConfig {
@@ -27,7 +28,8 @@ export class MyHammerConfig extends HammerGestureConfig {
     AllTodoComponent,
     HeaderComponent,
     FooterComponent,
-    TodoComponent
+    TodoComponent,
+    SubHeaderComponent
   ],
   imports: [
     FlexLayoutModule,

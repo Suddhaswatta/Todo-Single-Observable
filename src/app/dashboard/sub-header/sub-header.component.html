@@ -1,0 +1,25 @@
+<div style="padding: 1em;">
+    <div fxLayout="row" >
+      <div fxFlex="30%">
+        <button mat-raised-button color='primary' (click)="handleCreate()"> Create </button>
+      </div>
+      <div fxFlex="50%">
+        <mat-form-field fxFlex="100%" fxFlexAlign="start">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="search($event)" placeholder="Search Todo" #input>
+          <mat-hint>Find by title and status: backlog, done, wip</mat-hint>
+        </mat-form-field>
+  
+      </div>
+      <div fxFlex="20%">
+  
+        <div fxLayout="row-reverse">
+          <button mat-icon-button color='accent' (click)="saveAll()">
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </div>
+  
+    </div>
+    <mat-divider></mat-divider>
+    </div>

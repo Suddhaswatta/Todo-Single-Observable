@@ -44,21 +44,7 @@ export class AllTodoComponent implements OnInit, OnDestroy {
     const loadAllDataSubscription = this.todoservice.loadData$().subscribe();
     this.subscriptions.add(loadAllDataSubscription);
   }
-  handleCreate() {
-    console.log("Create ");
-    const ref = this.dialog.open(SaveTodoComponent, { data: {} });
-  }
-
-  saveAll() {
-    console.log('Save All');
-  }
-
-  search(event) {
-    const filterValue = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    console.log('Search Bar ' + filterValue);
-    this.todoservice.search(filterValue);
-  }
-
+  
   ngOnDestroy(): void {
     console.log("Destroyed");
     this.subscriptions.unsubscribe();

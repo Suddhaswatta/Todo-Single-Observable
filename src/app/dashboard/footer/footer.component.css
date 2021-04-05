@@ -1,11 +1,8 @@
 .footer {
-  bottom: 0;
-  color: #ffff;
-  left: 0;
-  background-color: gray;
-  position: relative; 
+  padding: 1em;
+  color: white;
+  background-color: rgb(44, 42, 42);
   font-size: small;
-  width:100%;
   
   }
   
